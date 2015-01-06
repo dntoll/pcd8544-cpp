@@ -26,6 +26,7 @@
 *.exe
 *.out
 *.app
+pcd8544
 
 #eclipse
 .cproject
