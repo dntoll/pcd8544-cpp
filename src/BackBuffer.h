@@ -9,13 +9,27 @@
 class BackBuffer {
 public:
 	BackBuffer(pcd8544 &lcd);
-	void clearScreen();
-	void fillBox(const Rect &screen, const Color &fill);
-	void flush();
+
+	unsigned char* getData();
+
+	unsigned char _BV(int v);
+
+	bool getPixel(int x, int y);
+
+	void setPixel(int x, int y, bool value);
+
+	//84x48
+	int getHeight() {
+		return 48;
+	}
+
+	int getWidth() {
+		return 84;
+	}
 private:
-	static const int buffersize = pcd8544::WIDTH*pcd8544::HEIGHT*2; //two bytes per pixel
-	std::vector<Rect> dirtyRects;
-	unsigned char backBuffer[pcd8544::WIDTH][pcd8544::HEIGHT][2];
-	unsigned char writeBuffer[buffersize];
-	pcd8544 &screen;
+	unsigned char *data;
+	unsigned char rows;
+	unsigned char columns;
+	unsigned char pixelsPerRow;
+	pcd8544 &lcd;
 };

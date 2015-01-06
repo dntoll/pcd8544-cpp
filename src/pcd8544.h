@@ -14,13 +14,15 @@ public:
 	void adressSet( int x, int y, int w, int h);
 	void writeToBuffer(const Rect &rect, unsigned char *writeBuffer);
 	void shutdown();
-	static const int WIDTH = 320;
-	static const int HEIGHT = 240;
+	static const unsigned char ROWS = 6;
+	static const unsigned char COLUMNS = 14;
+	static const unsigned char PIXELS_PER_ROW = 6;
 private:
 
-
-	void LCD_Write_DATA(unsigned char data);
-	void LCD_Write_COM(unsigned char com);
+	void gotoxy(int x, int y);
+	void gotorc(int r, int c);
+	void LCD_Write_DATA(unsigned char *data, int size);
+	void LCD_Write_COM(unsigned char *com, int size);
 
 
 	static const unsigned char DC   = 4;// # gpio pin 16 = wiringpi no. 4 (BCM 23)
@@ -33,11 +35,7 @@ private:
 	static const unsigned char DIN  = 12;// # gpio pin 19 = wiringpi no. 12 (MOSI BCM 10)
 
 	static const int spiChannel = 0;
-	static const int spiSpeed = 2000000;
-
-
-
-	int fileDescriptor;
+	static const int spiSpeed = 4000000;
 
 };
 

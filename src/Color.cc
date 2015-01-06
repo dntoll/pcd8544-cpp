@@ -11,6 +11,6 @@ Color::Color(bool a_isWhite) {
 
 
 bool Color::isBlack() const {
-	return !isWhite
+	return !isWhite;
 }
 
